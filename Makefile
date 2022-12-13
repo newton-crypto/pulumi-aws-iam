@@ -1,6 +1,6 @@
 VERSION         := 0.0.1
 
-PACK            := xyz
+PACK            := aws-iam
 PROJECT         := github.com/pulumi/pulumi-${PACK}
 
 PROVIDER        := pulumi-resource-${PACK}
@@ -28,6 +28,7 @@ build_provider::	bin/venv bin/${PACK}_provider ${PROVIDER_FILES}
 bin/venv:		${SRC}/requirements.txt
 	rm -rf $@
 	python3 -m venv $@
+	./bin/venv/bin/python -m pip install -U pip
 	./bin/venv/bin/python -m pip install -r $<
 
 bin/${PACK}_provider:	${SRC}/	${SRC}/${PACK}_provider/VERSION
@@ -111,7 +112,7 @@ build_python_sdk:: gen_python_sdk
 
 # Output tarballs for plugin distribution. Example use:
 #
-# pulumi plugin install resource xyz 0.0.1 --file pulumi-resource-xyz-v0.0.1-linux-amd64.tar.gz
+# pulumi plugin install resource aws-iam 0.0.1 --file pulumi-resource-aws-iam-v0.0.1-linux-amd64.tar.gz
 
 dist::	build_provider
 	rm -rf dist

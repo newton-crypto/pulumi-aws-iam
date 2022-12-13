@@ -7,33 +7,20 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Xyz
+namespace Pulumi.AwsIam
 {
-    [XyzResourceType("xyz:index:StaticPage")]
-    public partial class StaticPage : Pulumi.ComponentResource
+    [AwsIamResourceType("aws-iam:index:Policy")]
+    public partial class Policy : Pulumi.ComponentResource
     {
         /// <summary>
-        /// The bucket resource.
-        /// </summary>
-        [Output("bucket")]
-        public Output<Pulumi.Aws.S3.Bucket> Bucket { get; private set; } = null!;
-
-        /// <summary>
-        /// The website URL.
-        /// </summary>
-        [Output("websiteUrl")]
-        public Output<string> WebsiteUrl { get; private set; } = null!;
-
-
-        /// <summary>
-        /// Create a StaticPage resource with the given unique name, arguments, and options.
+        /// Create a Policy resource with the given unique name, arguments, and options.
         /// </summary>
         ///
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public StaticPage(string name, StaticPageArgs args, ComponentResourceOptions? options = null)
-            : base("xyz:index:StaticPage", name, args ?? new StaticPageArgs(), MakeResourceOptions(options, ""), remote: true)
+        public Policy(string name, PolicyArgs args, ComponentResourceOptions? options = null)
+            : base("aws-iam:index:Policy", name, args ?? new PolicyArgs(), MakeResourceOptions(options, ""), remote: true)
         {
         }
 
@@ -50,15 +37,33 @@ namespace Pulumi.Xyz
         }
     }
 
-    public sealed class StaticPageArgs : Pulumi.ResourceArgs
+    public sealed class PolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The HTML content for index.html.
+        /// Description of Policy.
         /// </summary>
-        [Input("indexContent", required: true)]
-        public Input<string> IndexContent { get; set; } = null!;
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
-        public StaticPageArgs()
+        /// <summary>
+        /// Name of Role or Policy.
+        /// </summary>
+        [Input("name", required: true)]
+        public Input<string> Name { get; set; } = null!;
+
+        /// <summary>
+        /// Optional suffix for Policy.
+        /// </summary>
+        [Input("name_suffix")]
+        public Input<string>? Name_suffix { get; set; }
+
+        /// <summary>
+        /// Policy statements for access.
+        /// </summary>
+        [Input("policy_statements")]
+        public Input<string>? Policy_statements { get; set; }
+
+        public PolicyArgs()
         {
         }
     }

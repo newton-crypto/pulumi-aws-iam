@@ -15,10 +15,10 @@
 
 import sys
 
+import pulumi
 import pulumi.provider
-import xyz_provider
-import xyz_provider.provider
+import aws_iam.provider
 
 
-if __name__ == '__main__':
-    pulumi.provider.main(xyz_provider.provider.Provider(), sys.argv[1:])
+if __name__ == "__main__":
+    pulumi.provider.main(aws_iam.provider.Provider(), sys.argv[1:])

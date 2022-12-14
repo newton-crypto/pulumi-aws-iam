@@ -14,8 +14,12 @@
     },
     "files": [
         "index.ts",
+        "policy.ts",
         "provider.ts",
-        "staticPage.ts",
+        "role.ts",
+        "types/index.ts",
+        "types/input.ts",
+        "types/output.ts",
         "utilities.ts"
     ]
 }

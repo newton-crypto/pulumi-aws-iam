@@ -116,5 +116,5 @@ The work done in the repo so far include some replacing the example StaticPage t
 
 Issues that were encountered while authoring include :
 - Overloading the provider.py's construct(). The basic example does not cover what to do when more than one resource needs to be created.  
-- Makefile issues. Running the make build and the rest of the commands listed above do not work as it expects folders that do not exist and have dependencies (during a yarn install) that are unable to be found.
+- Makefile issues. Running the make build and the rest of the commands listed above do not work as it expects folders that do not exist (aws_provider? VERSION file?) and have dependencies (during a yarn install) that are unable to be found.
 - schema.json only being able to handle primitive types in parameter definitions. Also does not support unions.
